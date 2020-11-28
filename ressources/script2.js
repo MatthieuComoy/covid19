@@ -1,9 +1,16 @@
-
 const app = document.getElementById('root');
 
 const list = document.createElement('ul');
 
 app.appendChild(list);
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+today = dd + '/' + mm + '/' + yyyy ;
+
+
 
 var request = new XMLHttpRequest();
 request.open('GET', 'https://coronavirusapi-france.now.sh/AllLiveData', true);
@@ -30,7 +37,7 @@ request.onload = function() {
         gueri = gueri + parseInt(rep.gueris)
         nbdec = nbdec + parseInt(rep.deces)
       }
-      titre = 'Rapport covid-19 du ' + String(rep.date)
+      titre = 'Noisy le grand, Fr - ' + today
     });
     document.getElementById("titre").innerHTML = titre;
     document.getElementById("rea").innerHTML = rea;
