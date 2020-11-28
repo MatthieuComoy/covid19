@@ -53,7 +53,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllLiveData', function(json) {
       return "<strong>" + d.nom + " :</strong> <span style='color:red'>" + d.deces + "</span>";
     })
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("#hist").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
