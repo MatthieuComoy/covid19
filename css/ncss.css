@@ -12,7 +12,6 @@ header{
     display: inline-block;
     line-height: 72px;
     margin-bottom: 20px;
-
 }
 p{
     margin-top: 0;
@@ -266,6 +265,9 @@ p{
   }
   .collumn + .collumn{
     border-left: none;
+  }
+  header{
+      font-size: 40px;
   }
 }
 
