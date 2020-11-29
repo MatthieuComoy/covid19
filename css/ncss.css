@@ -244,6 +244,11 @@ p{
 .subcolumn{
   flex:1;
 }
+
+.chiffre{
+  font-family: 'Droid Serif', serif;
+  font-size: 36px;
+}
 /*________________________________________________________________________________________________________________________________*/
 /*MEDIAQUERIES*/
 @media only all and (max-width: 1300px) {

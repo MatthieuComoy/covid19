@@ -14,7 +14,7 @@
 
 <div class="head">
     <div class="headerobjectswrapper">
-        <div class="weatherforcastbox"><span style="font-style: italic;">Ce site a été créé dans un but purment académique.</span><br><span>Il se base sur les données d'<a href="https://www.data.gouv.fr/fr/organizations/opencovid19-fr/#datasets">OpenCOVID19-fr</a></span></div>
+        <div class="weatherforcastbox"><span style="font-style: italic;">Ce site a été créé dans un but purement académique.</span><br><span>Il se base sur les données d'<a href="https://www.data.gouv.fr/fr/organizations/opencovid19-fr/#datasets">OpenCOVID19-fr</a></span></div>
         <header>Rapport coronavirus</header>
     </div>
 
@@ -23,15 +23,17 @@
 <div class="content">
     <div class="collumns">
         <div class="collumn">
-            <div class="head"><span class="headline hl3">Réanimations</span><p><span class="headline hl4">Nouvelles et totales</span></p></div>
+            <div class="head">
+              <span class="headline hl1">Réanimations</span>
+            </div>
             <div class="subcolumns">
               <div class="subcolumn">
-                <h2>Réanimation totales</h2>
-                <p id="rea"></p>
+                <h2 class="headline hl2">Totales</h2>
+                <p id="rea" class="chiffre"></p>
               </div>
               <div class="subcolumn">
-                <h2>Nouvelles réanimations</h2>
-                <p id="nrea"></p>
+                <h2 class="headline hl2">Aujourd'hui</h2>
+                <p id="nrea" class="chiffre">+</p>
               </div>
             </div>
             <script src="https://d3js.org/d3.v4.js"></script>
@@ -41,15 +43,17 @@
             <div id="map" width="440" height="300"></div>
         </div>
         <div class="collumn">
-            <div class="head"><span class="headline hl5">Décés et guérisons</span><p><span class="headline hl6">Comment va la France?</span></p></div>
+            <div class="head">
+              <span class="headline hl1">Décés et guérisons</span>
+            </div>
             <div class="subcolumns">
               <div class="subcolumn">
-                <h2>Guérisons</h2>
-                <p id="gueri"></p>
+                <h2 class="headline hl2">Guérisons</h2>
+                <p id="gueri" class="chiffre"></p>
               </div>
               <div class="subcolumn">
-                <h2>Nouveaux décés</h2>
-                <p id="deces"></p>
+                <h2 class="headline hl2">Décés</h2>
+                <p id="deces" class="chiffre"></p>
               </div>
             </div>
 
