@@ -1,9 +1,3 @@
-const app = document.getElementById('root');
-
-const list = document.createElement('ul');
-
-app.appendChild(list);
-
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -27,10 +21,6 @@ request.onload = function() {
     data = data.allLiveFranceData
     console.log(data = data)
     data.forEach(rep => {
-      const li = document.createElement('li');
-      li.textContent = rep.nom + ' - Rea:' + rep.reanimation + ' - Deaths:' + rep.deces;
-
-      list.appendChild(li);
       if (rep.sourceType != "ministere-sante" && rep.code == 'FRA') {
         rea = rea + parseInt(rep.reanimation)
         nrea = nrea + parseInt(rep.nouvellesReanimations)
