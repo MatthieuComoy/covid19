@@ -47,11 +47,19 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
    svg.append("g")
      .call(d3.axisLeft(y));
 
+     //check if positive or negative
+     if (data[3].nouvellesReanimations > data[6].nouvellesReanimations){
+       var color = 'green'
+     }
+     else{
+       var color = 'red'
+     }
+
    // Add the line
    svg.append("path")
      .datum(data)
      .attr("fill", "none")
-     .attr("stroke", "steelblue")
+     .attr("stroke", color)
      .attr("stroke-width", 1.5)
      .attr("d", d3.line()
        .x(function(d) { return x(d.date) })

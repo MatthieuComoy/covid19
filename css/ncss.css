@@ -58,7 +58,7 @@ p{
   flex: 1;
 }
 .ccontent {
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 100em;
 }
 .collumn + .collumn {
