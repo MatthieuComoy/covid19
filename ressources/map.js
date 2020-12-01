@@ -11,7 +11,7 @@ var projection = d3.geoNaturalEarth()
     .translate([width / 2, height / 2])
 
 // Load external data and boot
-d3.json("regions.geojson", function(data){
+d3.json("\regions.geojson", function(data){
     data = data.features
     // Draw the map
     svg.append("g")

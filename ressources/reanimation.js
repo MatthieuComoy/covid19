@@ -10,25 +10,15 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   data.forEach(function(d) {
     d.date = d3.timeParse("%Y-%m-%d")(d.date);
   });
-  // Opération pour avoir le différentiel de data
-  for (var i in data){
-    if (i == 0){
-      var value = data[i].deces
-    }
-    else{
-      var nvalue = data[i].deces
-      data[i].deces = data[i].deces - value
-      var value = nvalue
-    }
-  }
+
   data = data.slice(1,8)
   console.log(data);
 
   // set the dimensions and margins of the graph
-  var margin = {top: 10, right: 30, bottom: 0, left: 60}
+  var margin = {top: 10, right: 30, bottom: 30, left: 60}
 
   // append the svg object to the body of the page
-  var svg = d3.select("#my_linechart")
+  var svg = d3.select("#reanimation")
     .append("svg")
       .attr("viewBox", `0 0 650 400`)
     .append("g")
@@ -40,7 +30,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     .attr("x", width / 2 )
     .attr("y", 0)
     .style("text-anchor", "middle")
-    .text("Les décès sur les sept derniers jours coulissants");
+    .text("Les réanimations sur les sept derniers jours coulissants");
 
    // Add X axis --> it is a date format
    var x = d3.scaleTime()
@@ -52,7 +42,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
 
    // Add Y axis
    var y = d3.scaleLinear()
-     .domain([0, d3.max(data, function(d) { return +d.deces; })])
+     .domain([0, d3.max(data, function(d) { return +d.nouvellesReanimations; })])
      .range([ height, 0 ]);
    svg.append("g")
      .call(d3.axisLeft(y));
@@ -65,7 +55,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
      .attr("stroke-width", 1.5)
      .attr("d", d3.line()
        .x(function(d) { return x(d.date) })
-       .y(function(d) { return y(d.deces) })
+       .y(function(d) { return y(d.nouvellesReanimations) })
     )
 
 

@@ -1,81 +1,97 @@
 <html>
+
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/ncss.css">
-    <title>Covid 19</title>
-    <meta name="viewport" content="width=device-width">
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/ncss.css">
+  <title>Covid 19</title>
+  <meta name="viewport" content="width=device-width">
 
-    <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-    <script src="ressources/getapi.js"></script>
+  <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+  <script src="ressources/getapi.js"></script>
 
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 </head>
+
 <body>
 
-<div class="head">
+  <div class="head">
     <div class="headerobjectswrapper">
-        <div class="weatherforcastbox"><span style="font-style: italic;">Ce site a été créé dans un but purement académique.</span><br><span>Il se base sur les données d'<a href="https://www.data.gouv.fr/fr/organizations/opencovid19-fr/#datasets">OpenCOVID19-fr</a></span></div>
-        <header>Rapport coronavirus</header>
+      <div class="weatherforcastbox"><span style="font-style: italic;">Ce site a été créé dans un but purement académique.</span><br><span>Il se base sur les données d'<a
+            href="https://www.data.gouv.fr/fr/organizations/opencovid19-fr/#datasets">OpenCOVID19-fr</a></span></div>
+      <header>Rapport coronavirus</header>
     </div>
 
     <div class="subhead" id="titre">York, MA - Thursday August 30, 1978 - Seven Pages</div>
-</div>
-<div class="content">
+  </div>
+  <div class="content">
     <div class="collumns">
-        <div class="collumn">
-            <div class="head">
-              <span class="headline hl1">Réanimations</span>
-            </div>
-            <div class="subcolumns">
-              <div class="subcolumn">
-                <h2 class="headline hl2">Totales</h2>
-                <p id="rea" class="chiffre"></p>
-              </div>
-              <div class="subcolumn">
-                <h2 class="headline hl2">Aujourd'hui</h2>
-                <p id="nrea" class="chiffre">+</p>
-              </div>
-            </div>
-            <script src="https://d3js.org/d3.v4.js"></script>
-            <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-            <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-            <svg id="map" width="440" height="300"></svg>
-            <script src="ressources/map.js"></script>
+      <div class="collumn">
+        <div class="head">
+          <span class="headline hl1">Réanimations</span>
         </div>
-        <div class="collumn">
-            <div class="head">
-              <span class="headline hl1">Décés et guérisons</span>
+        <div class="ccontent">
+          <div class="subcolumns">
+            <div class="subcolumn">
+              <h2 class="headline hl2">Totales</h2>
+              <p id="rea" class="chiffre"></p>
             </div>
-            <div class="subcolumns">
-              <div class="subcolumn">
-                <h2 class="headline hl2">Guérisons</h2>
-                <p id="gueri" class="chiffre"></p>
-              </div>
-              <div class="subcolumn">
-                <h2 class="headline hl2">Décés</h2>
-                <p id="deces" class="chiffre"></p>
-              </div>
+            <div class="subcolumn">
+              <h2 class="headline hl2">Aujourd'hui</h2>
+              <p id="nrea" class="chiffre">+</p>
             </div>
-            <script src="https://d3js.org/d3.v4.js"></script>
-            <div id="my_dataviz"></div>
-            <script src="ressources/d3bis.js"></script>
+          </div>
+          <div id="reanimation"></div>
+          <script src="ressources/reanimation.js"></script>
+
+          <script src="https://d3js.org/d3.v4.js"></script>
+          <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+          <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+          <svg id="map" width="440" height="300"></svg>
+          <script src="ressources/map.js"></script>
         </div>
-        <div class="collumn">
-            <div class="head">
-              <span class="headline hl1">Dernières nouvelles</span>
-            </div>
-	          <div>
-              <a class="twitter-timeline" data-lang="fr" data-dnt="true" href="https://twitter.com/covid19_info?ref_src=twsrc%5Etfw">Tweets by covid19_info</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
+      </div>
+      <div class="collumn">
+        <div class="head">
+          <span class="headline hl1">Décés et guérisons</span>
         </div>
+        <div class="ccontent">
+          <div class="subcolumns">
+            <div class="subcolumn">
+              <h2 class="headline hl2">Guérisons</h2>
+              <p id="gueri" class="chiffre"></p>
+            </div>
+            <div class="subcolumn">
+              <h2 class="headline hl2">Décés</h2>
+              <p id="deces" class="chiffre"></p>
+            </div>
+          </div>
+          <script src="https://d3js.org/d3.v4.js"></script>
+          <div id="my_dataviz"></div>
+          <script src="ressources/bar1.js"></script>
+          <div id="my_linechart"></div>
+          <script src="ressources/linechart.js"></script>
+        </div>
+      </div>
+      <div class="collumn">
+        <div class="head">
+          <span class="headline hl1">Dernières nouvelles</span>
+        </div>
+        <div class="ccontent">
+          <div>
+            <a class="twitter-timeline" data-lang="fr" data-dnt="true" href="https://twitter.com/covid19_info?ref_src=twsrc%5Etfw">Tweets by covid19_info</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="my_linechart"></div>
-    <script src="ressources/linechart.js"></script>
-</div>
-<script src="ressources/script2.js"></script>
+    <div id="global"></div>
+    <script src="ressources/global.js"></script>
+  </div>
+  <script src="ressources/welcome.js"></script>
 </body>
+
 </html>
