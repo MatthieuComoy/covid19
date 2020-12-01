@@ -4,8 +4,6 @@ var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 today = dd + '/' + mm + '/' + yyyy ;
 
-
-
 var request = new XMLHttpRequest();
 request.open('GET', 'https://coronavirusapi-france.now.sh/AllLiveData', true);
 request.onload = function() {
@@ -22,10 +20,10 @@ request.onload = function() {
     console.log(data = data)
     data.forEach(rep => {
       if (rep.sourceType != "ministere-sante" && rep.code == 'FRA') {
-        rea = rea + parseInt(rep.reanimation)
-        nrea = nrea + parseInt(rep.nouvellesReanimations)
-        gueri = gueri + parseInt(rep.gueris)
-        nbdec = nbdec + parseInt(rep.deces)
+        rea += parseInt(rep.reanimation)
+        nrea += parseInt(rep.nouvellesReanimations)
+        gueri += parseInt(rep.gueris)
+        nbdec += parseInt(rep.deces)
       }
       titre = 'Noisy le grand, Fr - ' + today
     });
