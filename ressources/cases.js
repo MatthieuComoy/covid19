@@ -2,52 +2,42 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   //get and parse the data
   var myJson = json
   covid = myJson.allDataByDepartement
+  console.log(covid);
   covid = covid.filter(function (d) {
     return d.sourceType === "ministere-sante"
   });
-  covid = covid.filter(function (d) {
-    return d.date !== ''
-  });
-  data = covid
-  //data.splice(298,1)
-  //168 - 170
+  covid = covid.slice(-32, -1)
+  data = covid;
   data.forEach(function (d) {
     d.date = d3.timeParse("%Y-%m-%d")(d.date);
   });
-  console.log(data);
-
   // Opération pour avoir le différentiel de data
+  data = data.slice(0, 31)
   for (var i in data) {
-    if (i == 1) {
+    if (i == 0) {
       var value = data[i].casConfirmes
     } else {
-      if (data[i].casConfirmes == null || data[i].casConfirmes == 0) {
-        data[i].casConfirmes = value
-      }
       var nvalue = data[i].casConfirmes
       data[i].casConfirmes = data[i].casConfirmes - value
       var value = nvalue
-
     }
   }
-  data = data.slice(7, 1000)
+  data = data.slice(1, 31)
   console.log(data);
 
   // set the dimensions and margins of the graph
   var margin = {
     top: 10,
     right: 30,
-    bottom: 30,
+    bottom: 0,
     left: 60
   }
 
   // append the svg object to the body of the page
-  var svg = d3.select("#global")
+  var svg = d3.select("#cases")
     .append("svg")
-    .attr("viewBox", `0 0 650 400`)
-    .append("g")
-    .attr("transform",
-      "translate(" + margin.left + "," + margin.top + ")");
+    // Responsive SVG needs these 2 attributes and no width and height attr.
+    .attr("viewBox", `0 0 600 600`)
 
   //Create Title
   svg.append("text")
@@ -68,9 +58,9 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, (d3.max(data, function (d) {
+    .domain([0, d3.max(data, function (d) {
       return +d.casConfirmes;
-    }) / 4.5)])
+    })])
     .range([height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
@@ -97,4 +87,5 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         return y(d.casConfirmes)
       })
     )
+
 })

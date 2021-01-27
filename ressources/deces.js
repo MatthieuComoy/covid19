@@ -2,49 +2,43 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   //get and parse the data
   var myJson = json
   covid = myJson.allDataByDepartement
+  console.log(covid);
   covid = covid.filter(function (d) {
     return d.sourceType === "ministere-sante"
   });
+  covid = covid.slice(-9, -1)
   covid = covid.filter(function (d) {
-    return d.date !== ''
+    return d.date != null;
   });
-  data = covid
-  //data.splice(298,1)
-  //168 - 170
+  data = covid;
   data.forEach(function (d) {
     d.date = d3.timeParse("%Y-%m-%d")(d.date);
   });
-  console.log(data);
-
   // Opération pour avoir le différentiel de data
   for (var i in data) {
-    if (i == 1) {
-      var value = data[i].casConfirmes
+    if (i == 0) {
+      var value = data[i].deces
     } else {
-      if (data[i].casConfirmes == null || data[i].casConfirmes == 0) {
-        data[i].casConfirmes = value
-      }
-      var nvalue = data[i].casConfirmes
-      data[i].casConfirmes = data[i].casConfirmes - value
+      var nvalue = data[i].deces
+      data[i].deces = data[i].deces - value
       var value = nvalue
-
     }
   }
-  data = data.slice(7, 1000)
+  data = data.slice(1, 8)
   console.log(data);
 
   // set the dimensions and margins of the graph
   var margin = {
     top: 10,
     right: 30,
-    bottom: 30,
+    bottom: 0,
     left: 60
   }
 
   // append the svg object to the body of the page
-  var svg = d3.select("#global")
+  var svg = d3.select("#deces")
     .append("svg")
-    .attr("viewBox", `0 0 650 400`)
+    .attr("viewBox", `0 0 600 600`)
     .append("g")
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
@@ -54,7 +48,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     .attr("x", width / 2)
     .attr("y", 0)
     .style("text-anchor", "middle")
-    .text("Nouveaux cas sur les 30 derniers jours coulissants");
+    .text("Les décès sur les sept derniers jours coulissants");
 
   // Add X axis --> it is a date format
   var x = d3.scaleTime()
@@ -68,15 +62,15 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, (d3.max(data, function (d) {
-      return +d.casConfirmes;
-    }) / 4.5)])
+    .domain([0, d3.max(data, function (d) {
+      return +d.deces;
+    })])
     .range([height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
   //check if positive or negative
-  if (data[3].casConfirmes > data[6].casConfirmes) {
+  if (data[3].deces > data[6].deces) {
     var color = 'green'
   } else {
     var color = 'red'
@@ -94,7 +88,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         return x(d.date)
       })
       .y(function (d) {
-        return y(d.casConfirmes)
+        return y(d.deces)
       })
     )
 })
