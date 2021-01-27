@@ -6,6 +6,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   console.log(covid);
   covid = covid.filter(function(d){ return d.sourceType === "ministere-sante"});
   covid = covid.slice(-9,-1)
+  covid = covid.filter(function(d){ return d.date != null; });
   data = covid;
   data.forEach(function(d) {
     d.date = d3.timeParse("%Y-%m-%d")(d.date);
@@ -71,7 +72,8 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
      .attr("fill", "none")
      .attr("stroke", color)
      .attr("stroke-width", 1.5)
-     .attr("d", d3.line()
+     .attr("d", d3.svg.line()
+       .interpolate("basis")
        .x(function(d) { return x(d.date) })
        .y(function(d) { return y(d.deces) })
     )

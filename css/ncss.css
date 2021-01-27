@@ -59,7 +59,7 @@ p{
 }
 .ccontent {
   overflow-y: auto;
-  max-height: 100em;
+  max-height: 70em;
 }
 .collumn + .collumn {
   border-left: 1px solid #2f2f2f;
