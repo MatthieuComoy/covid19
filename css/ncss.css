@@ -59,7 +59,6 @@ p{
   line-height: 20px;
   padding: 0 3% 0 3%;
   vertical-align: top;
-  margin-bottom: 50px;
   transition: all .7s;
   flex: 1;
 }
@@ -282,8 +281,11 @@ p{
   .collumn + .collumn{
     border-left: none;
   }
-  header{
+  h2{
       font-size: 40px;
+  }
+  #map{
+      display: hidden;
   }
 }
 
