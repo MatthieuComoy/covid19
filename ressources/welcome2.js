@@ -42,7 +42,7 @@ for (let i = 0; i < index.length; i++) {
                         cas_ajd = rep.casConfirmes
                         deces_ajd = rep.deces
 
-                        document.getElementById("titre").innerHTML = 'Noisy le grand, Fr - ' + String(hier);
+                        document.getElementById("titre").innerHTML = 'Les données les plus récentes dates du ' + String(hier);
                         document.getElementById("deces").innerHTML = deces_ajd;
                         document.getElementById("cas").innerHTML = cas_ajd;
                     }

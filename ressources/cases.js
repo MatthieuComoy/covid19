@@ -37,7 +37,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   var svg = d3.select("#cases")
     .append("svg")
     // Responsive SVG needs these 2 attributes and no width and height attr.
-    .attr("viewBox", `0 0 600 600`)
+    .attr("viewBox", `0 0 600 400`)
 
   //Create Title
   svg.append("text")
@@ -87,5 +87,4 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         return y(d.casConfirmes)
       })
     )
-
 })

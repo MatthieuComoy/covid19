@@ -36,9 +36,9 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   }
 
   // append the svg object to the body of the page
-  var svg = d3.select("#deces")
+  var svg = d3.select("#decesplot")
     .append("svg")
-    .attr("viewBox", `0 0 600 600`)
+    .attr("viewBox", `0 0 600 400`)
     .append("g")
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
