@@ -9,8 +9,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     return d.date !== ''
   });
   data = covid
-  //data.splice(298,1)
-  //168 - 170
+  data.splice(304, 1);
   data.forEach(function (d) {
     d.date = d3.timeParse("%Y-%m-%d")(d.date);
   });
@@ -21,17 +20,34 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     if (i == 1) {
       var value = data[i].casConfirmes
     } else {
-      if (data[i].casConfirmes == null || data[i].casConfirmes == 0) {
+      if (data[i].casConfirmes == null || data[i].casConfirmes <= 0) {
         data[i].casConfirmes = value
       }
       var nvalue = data[i].casConfirmes
       data[i].casConfirmes = data[i].casConfirmes - value
       var value = nvalue
-
     }
   }
   data = data.slice(7, 1000)
   console.log(data);
+
+
+  // List of groups (here I have one group per column)
+  var allGroup = ["valueA", "valueB"]
+
+  // add the options to the button
+  d3.select("#selectButton")
+    .selectAll('myOptions')
+     .data(allGroup)
+    .enter()
+    .append('option')
+    .text(function (d) { return d; }) // text showed in the menu
+    .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+  // A color scale: one color for each group
+  var myColor = d3.scaleOrdinal()
+  .domain(allGroup)
+  .range(d3.schemeSet2);
 
   // set the dimensions and margins of the graph
   var margin = {
@@ -54,7 +70,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     .attr("x", width / 2)
     .attr("y", 0)
     .style("text-anchor", "middle")
-    .text("Nouveaux cas sur les 30 derniers jours coulissants");
+    .text("Global data");
 
   // Add X axis --> it is a date format
   var x = d3.scaleTime()
@@ -70,7 +86,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   var y = d3.scaleLinear()
     .domain([0, (d3.max(data, function (d) {
       return +d.casConfirmes;
-    }) / 4.5)])
+    }))])
     .range([height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
