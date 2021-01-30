@@ -41,16 +41,16 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       var value = nvalue
     }
   }
-  data_1 = data.slice(-8, -1)
-  data_2 = data.slice(-30, -1)
+  data_2 = data.slice(-31, -1)
+  data_1 = data_2.slice(-8, -1)
   console.log(data);
 
   // set the dimensions and margins of the graph
   var margin = {
-    top: 10,
-    right: 30,
+    top: 0,
+    right: 0,
     bottom: 0,
-    left: 60
+    left: 0
   }
 
   // append the svg object to the body of the page
@@ -68,10 +68,9 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     .style("text-anchor", "middle")
     .text("Les décès sur les sept derniers jours coulissants");
 */
-  // A function that update the chart
-  function update(data) {
 
-    // Add X axis --> it is a date format
+
+    // Init X
     var x = d3.scaleTime()
       .domain(d3.extent(data, function (d) {
         return d.date;
@@ -81,21 +80,50 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x).ticks(7));
 
+    // Init Y
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(data, function (d) {
+        return +d.deces;
+      })])
+      .range([height, 0]);
+
+  // A function that update the chart
+  function update(data) {
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function (d) {
+        return d.date;
+      }))
+      .range([0, width]);
+      
+      
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x).ticks(7));
+      
+
     // Add Y axis
     var y = d3.scaleLinear()
       .domain([0, d3.max(data, function (d) {
         return +d.deces;
       })])
       .range([height, 0]);
-      
     //vg.append("g")
     //  .call(d3.axisLeft(y));
  
-      var color = '#b60000'
+    var u = svg.selectAll(".lineTest")
+      .data([data], function(d){ return d.ser1 });
+    var color = '#b60000'
 
     // Add the line
-    svg.append("path")
-      .datum(data)
+    u
+      .enter()
+      .append("path")
+      .attr("class","linetest")
+      .merge(u)
+      .transition()
+      .duration(2000)
       .attr("fill", "none")
       .attr("stroke", color)
       .attr("stroke-width", 1.5)
@@ -110,11 +138,9 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       )
   }
 
-  update(data_2)
-  window.onload = function () {
-    var btn1 = document.getElementById("but1");
-    var btn2 = document.getElementById("but2");
-    btn1.onclick = update(data_1);
-    btn2.onclick = update(data_2);
-  }
+  update(data_1)
+
+  document.getElementById("but1").onclick = function(){update(data_1);}
+  document.getElementById("but2").onclick = function(){update(data_2);}
+
 })
