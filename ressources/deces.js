@@ -58,16 +58,16 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     .append("svg")
     .attr("viewBox", `0 0 600 400`)
     .append("g")
-    .attr("transform",
-      "translate(" + margin.left + "," + margin.top + ")");
-
+   // .attr("transform",
+   //   "translate(" + margin.left + "," + margin.top + ")");
+/*
   //Create Title
   svg.append("text")
     .attr("x", width / 2)
     .attr("y", 0)
     .style("text-anchor", "middle")
     .text("Les décès sur les sept derniers jours coulissants");
-
+*/
   // A function that update the chart
   function update(data) {
 
@@ -87,15 +87,11 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         return +d.deces;
       })])
       .range([height, 0]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
-
-    //check if positive or negative
-    if (data[3].deces > data[6].deces) {
-      var color = 'green'
-    } else {
-      var color = 'red'
-    }
+      
+    //vg.append("g")
+    //  .call(d3.axisLeft(y));
+ 
+      var color = '#b60000'
 
     // Add the line
     svg.append("path")

@@ -55,13 +55,14 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).ticks(7));
-
+ 
   // Add Y axis
   var y = d3.scaleLinear()
     .domain([0, d3.max(data, function (d) {
       return +d.casConfirmes;
     })])
     .range([height, 0]);
+    /*
   svg.append("g")
     .call(d3.axisLeft(y));
 
@@ -70,7 +71,8 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     var color = 'green'
   } else {
     var color = 'red'
-  }
+  } */
+  var color = '#b66d00'
 
   // Add the line
   svg.append("path")
