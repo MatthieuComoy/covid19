@@ -1,4 +1,21 @@
 $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement=France', function (json) {
+
+  // List of groups (here I have one group per column)
+  var days = ["30 jours", "7 jours"]
+
+  // add the options to the button
+  d3.select("#selectDeath")
+    .selectAll('myOptions')
+    .data(days)
+    .enter()
+    .append('option')
+    .text(function (d) {
+      return d;
+    }) // text showed in the menu
+    .attr("value", function (d) {
+      return d;
+    }) // corresponding value returned by the button
+
   //get and parse the data
   var myJson = json
   covid = myJson.allDataByDepartement
@@ -6,7 +23,6 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   covid = covid.filter(function (d) {
     return d.sourceType === "ministere-sante"
   });
-  covid = covid.slice(-9, -1)
   covid = covid.filter(function (d) {
     return d.date != null;
   });
@@ -14,6 +30,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   data.forEach(function (d) {
     d.date = d3.timeParse("%Y-%m-%d")(d.date);
   });
+
   // Opération pour avoir le différentiel de data
   for (var i in data) {
     if (i == 0) {
@@ -24,7 +41,8 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       var value = nvalue
     }
   }
-  data = data.slice(1, 8)
+  data_1 = data.slice(-8, -1)
+  data_2 = data.slice(-30, -1)
   console.log(data);
 
   // set the dimensions and margins of the graph
@@ -50,45 +68,57 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     .style("text-anchor", "middle")
     .text("Les décès sur les sept derniers jours coulissants");
 
-  // Add X axis --> it is a date format
-  var x = d3.scaleTime()
-    .domain(d3.extent(data, function (d) {
-      return d.date;
-    }))
-    .range([0, width]);
-  svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(7));
+  // A function that update the chart
+  function update(data) {
 
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain([0, d3.max(data, function (d) {
-      return +d.deces;
-    })])
-    .range([height, 0]);
-  svg.append("g")
-    .call(d3.axisLeft(y));
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function (d) {
+        return d.date;
+      }))
+      .range([0, width]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x).ticks(7));
 
-  //check if positive or negative
-  if (data[3].deces > data[6].deces) {
-    var color = 'green'
-  } else {
-    var color = 'red'
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(data, function (d) {
+        return +d.deces;
+      })])
+      .range([height, 0]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    //check if positive or negative
+    if (data[3].deces > data[6].deces) {
+      var color = 'green'
+    } else {
+      var color = 'red'
+    }
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", color)
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.svg.line()
+        .interpolate("basis")
+        .x(function (d) {
+          return x(d.date)
+        })
+        .y(function (d) {
+          return y(d.deces)
+        })
+      )
   }
 
-  // Add the line
-  svg.append("path")
-    .datum(data)
-    .attr("fill", "none")
-    .attr("stroke", color)
-    .attr("stroke-width", 1.5)
-    .attr("d", d3.svg.line()
-      .interpolate("basis")
-      .x(function (d) {
-        return x(d.date)
-      })
-      .y(function (d) {
-        return y(d.deces)
-      })
-    )
+  update(data_2)
+  window.onload = function () {
+    var btn1 = document.getElementById("but1");
+    var btn2 = document.getElementById("but2");
+    btn1.onclick = update(data_1);
+    btn2.onclick = update(data_2);
+  }
 })

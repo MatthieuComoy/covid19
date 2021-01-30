@@ -1,16 +1,21 @@
 <html>
 
 <head>
-  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic'
+    rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/ncss.css">
   <title>Covid 19</title>
   <meta name="viewport" content="width=device-width">
 
-  <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
-  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js> </script> <script
+    src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
   <script src="ressources/getapi.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
@@ -21,13 +26,13 @@
 
   <div class="head">
     <div class="headerobjectswrapper">
-      <div class="weatherforcastbox"><span style="font-style: italic;">Ce site a été créé dans un but purement académique.</span><br><span>Il se base sur les données d'<a
-            href="https://www.data.gouv.fr/fr/organizations/opencovid19-fr/#datasets">OpenCOVID19-fr</a></span></div>
+      <span>
       <h2>Dashboard coronavirus</h2>
       <h1>Développé par Matthieu Comoy</h1>
+      </span>
     </div>
 
-    <div class="subhead" id="titre">York, MA - Thursday August 30, 1978 - Seven Pages</div>
+    <div class="subhead" id="titre"></div>
   </div>
   <div class="content">
     <div class="collumns">
@@ -48,7 +53,6 @@
           </div>
           <div id="cases"></div>
           <script src="ressources/cases.js"></script>
-
           <script src="https://d3js.org/d3.v4.js"></script>
           <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
           <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
@@ -71,8 +75,10 @@
               <p>de plus aujourd'hui</p>
             </div>
           </div>
+          <button id="but1">7 jours</button>
+          <button id="but2">30 jours</button>
           <div id="decesplot"></div>
-          <script src="ressources/deces.js"></script>
+          <script type="text/javascript" src="ressources/deces.js"></script>
           <!--<div id="my_dataviz"></div>
           <script src="ressources/bar1.js"></script> -->
         </div>
@@ -84,7 +90,8 @@
         </div>
         <div class="ccontent">
           <div>
-            <a class="twitter-timeline" data-lang="fr" data-dnt="true" href="https://twitter.com/covid19_info?ref_src=twsrc%5Etfw">Tweets by covid19_info</a>
+            <a class="twitter-timeline" data-lang="fr" data-dnt="true"
+              href="https://twitter.com/covid19_info?ref_src=twsrc%5Etfw">Tweets by covid19_info</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
         </div>
@@ -95,6 +102,11 @@
     <div id="global"></div>
     <script src="ressources/global2.js"></script>
   </div>
+  <footer>
+    <span style="font-style: italic;">Ce site a été créé dans un but purement
+      académique.</span><br><span>Il se base sur les données d'<a
+        href="https://www.data.gouv.fr/fr/organizations/opencovid19-fr/#datasets">OpenCOVID19-fr</a></span>
+  </footer>
 </body>
 
 </html>

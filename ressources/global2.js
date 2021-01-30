@@ -15,30 +15,54 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     });
     console.log(data);
 
+    // Opération pour avoir le différentiel de data
+    for (var i in data) {
+        if (i == 1) {
+            var old_cas = data[i].casConfirmes
+        } else {
+            if (data[i].casConfirmes == null || data[i].casConfirmes <= 0) {
+                data[i].casConfirmes = old_cas
+            }
+            var new_cas = data[i].casConfirmes
+            data[i].casConfirmes = data[i].casConfirmes - old_cas
+            var old_cas = new_cas
+        }
+    }
+
+    for (var i in data) {
+        if (i == 1) {
+            var old_cas = data[i].deces
+        } else {
+            if (data[i].deces == null) {
+                data[i].deces = old_cas
+            } else if (data[i].deces < 0) {
+                data[i].deces = 0
+            }
+            var new_cas = data[i].deces
+            data[i].deces = data[i].deces - old_cas
+            var old_cas = new_cas
+        }
+    }
+    
+    for (var i in data) {
+        if (i == 1) {
+            var old_cas = data[i].hospitalises
+        } else {
+            if (data[i].hospitalises == null || data[i].hospitalises <= 0) {
+                data[i].hospitalises = old_cas
+            }
+            var new_cas = data[i].hospitalises
+            data[i].hospitalises = data[i].hospitalises - old_cas
+            var old_cas = new_cas
+        }
+    }
+    
+    data = data.slice(7, 1000)
+    console.log(data);
 
     // List of groups (here I have one group per column)
     var allGroup = ["casConfirmes", "deces", "hospitalises"]
 
-    // Various changes to the data to make it clean
-    allGroup.forEach(function(item,index){
-        for (var i in data) {
-            if (i == 1) {
-                var old = data[i].item
-            } else {
-                if (data[i].item == null || data[i].item <= 0) {
-                    data[i].item = old
-                }
-                var newd = data[i].item
-                data[i].item = data[i].item - old
-                var old = newd
-            }
-        }
-        old = 0
-        newd = 0
-    });
-    
-    data = data.slice(7, 1000)
-    console.log(data);
 
     // add the options to the button
     d3.select("#selectButton")
@@ -89,6 +113,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         .range([0, width]);
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
+        .attr("class", "x-axis")
         .call(d3.axisBottom(x));
 
     // Add Y axis
@@ -98,7 +123,9 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         }))])
         .range([height, 0]);
     svg.append("g")
+        .attr("class", "y-axis")
         .call(d3.axisLeft(y));
+
 
     // Add the line
     var line = svg
@@ -114,13 +141,33 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
             })
         )
         .attr("stroke", function (d) {
-            return myColor("valueA")
+            return myColor("casConfirmes")
         })
-        .style("stroke-width", 4)
+        .style("stroke-width", 2)
         .style("fill", "none")
+
 
     // A function that update the chart
     function update(selectedGroup) {
+
+        //Update y axis
+        var maxrange = 10000
+        console.log(selectedGroup)
+        if (selectedGroup == 'deces'){
+            maxrange = 700
+            minrange = 0
+        } else if (selectedGroup == 'hospitalises') {
+            maxrange = 4000
+            minrange = -1000
+        } else {
+            maxrange = 90000
+            minrange = 0
+        }
+        y.domain([minrange, maxrange]);
+        svg.selectAll("g.y-axis")
+            .transition().duration(1000)
+            .call(d3.axisLeft(y));
+
         // Create new data with the selection?
         var dataFilter = data.map(function (d) {
             return {
