@@ -1,0 +1,66 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #2f2f2f;
+    background-color: whitesmoke;
+    margin:0px!important;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+    margin: 0px !important;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.head {
+    text-align: center;
+    position: relative;
+}
+
+.headerobjectswrapper {
+    background-color: #2f2f2f;
+    color: white;
+    inset: 10%;
+}
+
+.subhead {
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    padding: 12px 0 12px 0;
+
+}
+
+
+footer {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    background-color: #2f2f2f;
+    text-align: center;
+}
+
+.chiffre {
+    font-family: 'Assistant', sans-serif;
+    font-size: 36px;
+}
+
+.info {
+    font-size: 46px;
+}
+
+.nouvelle {
+    font-size: 30px;
+}
