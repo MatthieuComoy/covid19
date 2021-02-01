@@ -27,8 +27,9 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   data = data.filter(function (d) {
     return d.sourceType === "ministere-sante"
   });
-  data_today = data.slice(-2, -1)
-  data_yesterday = data.slice(-3, -2)
+  data_today = data.slice(-1)
+  console.log(data_today)
+  data_yesterday = data.slice(-2, -1)
   var cas_new = data_today[0].casConfirmes - data_yesterday[0].casConfirmes
   var deces_new = data_today[0].deces - data_yesterday[0].deces
   document.getElementById("ndeces").innerHTML = '(+' + deces_new.toLocaleString('fr-FR') + ')';
