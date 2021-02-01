@@ -45,19 +45,15 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     }
     
     for (var i in data) {
-        if (i == 1) {
-            var old_cas = data[i].hospitalises
-        } else {
             if (data[i].hospitalises == null || data[i].hospitalises <= 0) {
                 data[i].hospitalises = old_cas
-            }
-            var new_cas = data[i].hospitalises
-            data[i].hospitalises = data[i].hospitalises - old_cas
-            var old_cas = new_cas
-        }
+            } 
+           // var new_cas = data[i].hospitalises
+            //data[i].hospitalises = data[i].hospitalises - old_cas
+            var old_cas = data[i].hospitalises
     }
     
-    data = data.slice(7, 1000)
+    data = data.slice(7)
     console.log(data);
 
     // List of groups (here I have one group per column)
@@ -157,13 +153,13 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
             maxrange = 700
             minrange = 0
         } else if (selectedGroup == 'hospitalises') {
-            maxrange = 4000
+            maxrange = 40000
             minrange = -1000
         } else {
             maxrange = 90000
             minrange = 0
         }
-        y.domain([minrange, maxrange]);
+        y.domain([0, maxrange]);
         svg.selectAll("g.y-axis")
             .transition().duration(1000)
             .call(d3.axisLeft(y));
