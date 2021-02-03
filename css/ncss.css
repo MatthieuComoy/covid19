@@ -1,40 +1,42 @@
-body{
+body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #2f2f2f;
-    background-color: whitesmoke;
-    margin:0px!important;
+    background-color: #e8e8e8;
+    margin: 0px !important;
 }
-h2{
+
+h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
     font-size: 2.2em;
     text-transform: uppercase;
-    margin:0px!important;
+    margin: 0px !important;
 }
 
-h1{
+h1 {
     font-weight: 300;
     font-size: 1em;
     margin: 0px;
 }
 
-p{
+p {
     margin-top: 0;
     margin-bottom: 20px;
 }
-.head{
+
+.head {
     text-align: center;
     position: relative;
 }
 
-.headerobjectswrapper{
+.headerobjectswrapper {
     background-color: #2f2f2f;
     color: white;
     inset: 10%;
 }
 
-.subhead{
+.subhead {
     text-transform: uppercase;
     border-bottom: 2px solid #2f2f2f;
     border-top: 2px solid #2f2f2f;
@@ -43,90 +45,93 @@ p{
 }
 
 .collumns {
-  display: flex;
-  padding: 2%;
+    display: flex;
+    padding: 2%;
 }
 
 .collumn {
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0 3% 0 3%;
-  vertical-align: top;
-  transition: all .7s;
-  flex: 1;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0 3% 0 3%;
+    vertical-align: top;
+    transition: all .7s;
+    flex: 1;
 }
+
 .ccontent {
-  overflow-y: auto;
-  max-height: 42em;
-  border-radius: 3%/3%;
-  background-color: white;
-  color : #2f2f2f;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
-              0 2px 2px rgba(0,0,0,0.12), 
-              0 4px 4px rgba(0,0,0,0.12), 
-              0 8px 8px rgba(0,0,0,0.12),
-              0 16px 16px rgba(0,0,0,0.12);
+    overflow-y: auto;
+    max-height: 42em;
+    color: #2f2f2f;
+    border-radius: 4%;
+    background: #e8e8e8;
+box-shadow:  20px 20px 60px #c5c5c5,
+             -20px -20px 60px #ffffff;
 }
 
-.subcolumns{
-   display: flex;
-   text-align: center;
+.subcolumns {
+    display: flex;
+    text-align: center;
 }
 
-.subcolumn{
-  flex:1;
-  margin-top:10%;
+.subcolumn {
+    flex: 1;
+    margin-top: 10%;
 }
 
-footer{
+footer {
     font-family: 'Open Sans', sans-serif;
     color: white;
     background-color: #2f2f2f;
     text-align: center;
     padding: 1em;
 }
-.chiffre{
-  font-family: 'Assistant', sans-serif;
-  font-size: 2em;
+
+.chiffre {
+    font-family: 'Assistant', sans-serif;
+    font-size: 2em;
 }
 
-.info{
+.info {
     font-size: 2.5em
 }
-.nouvelle{
+
+.nouvelle {
     font-size: 1.5em;
 }
 
-#map{
+#map {
     display: none;
 }
+
 /*________________________________________________________________________________________________________________________________*/
 /*MEDIAQUERIES*/
 @media only all and (max-width: 1300px) {
-    .weatherforcastbox{
+    .weatherforcastbox {
         display: none;
     }
 }
 
-@media (max-width: 768px) { /*breakpoint*/
-  .collumns {
-    flex-direction: column;
-  }
+@media (max-width: 768px) {
 
-  .collumn {
-      margin-bottom: 5%;
-  }
-  h2{
-      font-size: 40px;
-  }
-  #map{
-      display: none;
-  }
+    /*breakpoint*/
+    .collumns {
+        flex-direction: column;
+    }
+
+    .collumn {
+        margin-bottom: 5%;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    #map {
+        display: none;
+    }
 }
 
 /*________________________________________________________________________________________________________________________________*/
 /*D3 graphs*/
 
-.svg-content-responsive {
-
-}
+.svg-content-responsive {}

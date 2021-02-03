@@ -15,7 +15,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     });
     console.log(data);
 
-    // Opération pour avoir le différentiel de data
+    // CAS CONFIRMES
     for (var i in data) {
         if (i == 1) {
             var old_cas = data[i].casConfirmes
@@ -28,7 +28,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
             var old_cas = new_cas
         }
     }
-
+    // DECES
     for (var i in data) {
         if (i == 1) {
             var old_cas = data[i].deces
@@ -43,16 +43,16 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
             var old_cas = new_cas
         }
     }
-    
+    // HOSPITALISES
     for (var i in data) {
-            if (data[i].hospitalises == null || data[i].hospitalises <= 0) {
-                data[i].hospitalises = old_cas
-            } 
-           // var new_cas = data[i].hospitalises
-            //data[i].hospitalises = data[i].hospitalises - old_cas
-            var old_cas = data[i].hospitalises
+        if (data[i].hospitalises == null || data[i].hospitalises <= 0) {
+            data[i].hospitalises = old_cas
+        }
+        // var new_cas = data[i].hospitalises
+        //data[i].hospitalises = data[i].hospitalises - old_cas
+        var old_cas = data[i].hospitalises
     }
-    
+
     data = data.slice(7)
     console.log(data);
 
@@ -142,14 +142,13 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         .style("stroke-width", 2)
         .style("fill", "none")
 
-
     // A function that update the chart
     function update(selectedGroup) {
 
         //Update y axis
         var maxrange = 10000
         console.log(selectedGroup)
-        if (selectedGroup == 'deces'){
+        if (selectedGroup == 'deces') {
             maxrange = 700
             minrange = 0
         } else if (selectedGroup == 'hospitalises') {

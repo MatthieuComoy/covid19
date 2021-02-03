@@ -6,13 +6,12 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   covid = covid.filter(function (d) {
     return d.sourceType === "ministere-sante"
   });
-  covid = covid.slice(-32, -1)
+  covid = covid.slice(-31)
   data = covid;
   data.forEach(function (d) {
     d.date = d3.timeParse("%Y-%m-%d")(d.date);
   });
   // Opération pour avoir le différentiel de data
-  data = data.slice(0, 31)
   for (var i in data) {
     if (i == 0) {
       var value = data[i].casConfirmes
@@ -22,7 +21,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       var value = nvalue
     }
   }
-  data = data.slice(1, 31)
+  data = data.slice(1)
   console.log(data);
 
   // set the dimensions and margins of the graph

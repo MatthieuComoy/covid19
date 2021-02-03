@@ -59,34 +59,34 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     .append("svg")
     .attr("viewBox", `0 0 530 300`)
     .append("g")
-   // .attr("transform",
-   //   "translate(" + margin.left + "," + margin.top + ")");
-/*
-  //Create Title
-  svg.append("text")
-    .attr("x", width / 2)
-    .attr("y", 0)
-    .style("text-anchor", "middle")
-    .text("Les décès sur les sept derniers jours coulissants");
-*/
+  // .attr("transform",
+  //   "translate(" + margin.left + "," + margin.top + ")");
+  /*
+    //Create Title
+    svg.append("text")
+      .attr("x", width / 2)
+      .attr("y", 0)
+      .style("text-anchor", "middle")
+      .text("Les décès sur les sept derniers jours coulissants");
+  */
 
 
-    // Init X
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function (d) {
-        return d.date;
-      }))
-      .range([0, width]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).ticks(7));
+  // Init X
+  var x = d3.scaleTime()
+    .domain(d3.extent(data, function (d) {
+      return d.date;
+    }))
+    .range([0, width]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).ticks(7));
 
-    // Init Y
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function (d) {
-        return +d.deces;
-      })])
-      .range([height, 0]);
+  // Init Y
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data, function (d) {
+      return +d.deces;
+    })])
+    .range([height, 0]);
 
   // A function that update the chart
   function update(data) {
@@ -97,12 +97,12 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
         return d.date;
       }))
       .range([0, width]);
-      
-      
+
+
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x).ticks(7));
-      
+
 
     // Add Y axis
     var y = d3.scaleLinear()
@@ -112,16 +112,18 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       .range([height, 0]);
     //vg.append("g")
     //  .call(d3.axisLeft(y));
- 
+
     var u = svg.selectAll(".lineTest")
-      .data([data], function(d){ return d.ser1 });
+      .data([data], function (d) {
+        return d.ser1
+      });
     var color = '#b60000'
 
     // Add the line
     u
       .enter()
       .append("path")
-      .attr("class","linetest")
+      .attr("class", "linetest")
       .merge(u)
       .transition()
       .duration(2000)
@@ -141,7 +143,15 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
 
   update(data_1)
 
-  document.getElementById("but1").onclick = function(){update(data_1);}
-  document.getElementById("but2").onclick = function(){update(data_2);}
+  document.getElementById("but1").onclick = function () {
+    update(data_1);
+  }
+  document.getElementById("but2").onclick = function () {
+    update(data_2);
+  }
 
+  $("#days-select").on('change', function () {
+    var day = $(this).children(':selected').data('params')
+    alert(day);
+  });
 })
