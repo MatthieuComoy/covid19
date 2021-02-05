@@ -46,13 +46,13 @@ p {
 
 .collumns {
     display: flex;
-    padding: 2%;
+    padding: 1% 1% 0% 1%;
 }
 
 .collumn {
     font-size: 14px;
     line-height: 20px;
-    padding: 0 3% 0 3%;
+    padding: 1% 1% 0% 1%;
     vertical-align: top;
     transition: all .7s;
     flex: 1;
@@ -60,12 +60,16 @@ p {
 
 .ccontent {
     overflow-y: auto;
-    max-height: 42em;
+    max-height: 45em;
     color: #2f2f2f;
     border-radius: 4%;
     background: #e8e8e8;
     box-shadow: 20px 20px 60px #c5c5c5,
         -20px -20px 60px #ffffff;
+}
+
+#twitter{
+    max-height: 30em;
 }
 
 .subcolumns {
@@ -79,11 +83,15 @@ p {
 }
 
 footer {
+    position: fixed;
     font-family: 'Open Sans', sans-serif;
     color: white;
     background-color: #2f2f2f;
     text-align: center;
     padding: 1em;
+    z-index: 1;
+    bottom: 0px;
+    width: 100%;
 }
 
 .chiffre {
@@ -170,6 +178,21 @@ button{
 
     #map {
         display: none;
+    }
+    
+    footer{
+        margin-top: -50px;
+        position: relative;
+    }
+
+    .ccontent {
+        overflow-y: auto;
+        max-height: 45em;
+        color: #2f2f2f;
+        border-radius: 4%;
+        background: #e8e8e8;
+        box-shadow: 5px 5px 30px #c5c5c5,
+            -5px -5px 30px #ffffff;
     }
 }
 

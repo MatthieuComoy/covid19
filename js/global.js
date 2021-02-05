@@ -59,7 +59,6 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     // List of groups (here I have one group per column)
     var allGroup = ["casConfirmes", "deces", "hospitalises"]
 
-
     // add the options to the button
     d3.select("#selectButton")
         .selectAll('myOptions')
@@ -89,17 +88,11 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     // append the svg object to the body of the page
     var svg = d3.select("#global")
         .append("svg")
-        .attr("viewBox", `0 0 650 400`)
+        .attr("viewBox", `0 0 800 150`)
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    //Create Title
-    svg.append("text")
-        .attr("x", width / 2)
-        .attr("y", 0)
-        .style("text-anchor", "middle")
-        .text("Global data");
 
     // Add X axis --> it is a date format
     var x = d3.scaleTime()
