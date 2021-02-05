@@ -136,14 +136,12 @@ button{
 
 .seldeces:hover{
     background-color:#b60000;
-    box-shadow: 0px 15px 20px #4e4e4e;;
     color: #fff;
     transform: translateY(-3px);
 }
 
 .selcas:hover{
     background-color:#b66d00;
-    box-shadow: 0px 15px 20px #4e4e4e;;
     color: #fff;
     transform: translateY(-3px);
 }
