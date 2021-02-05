@@ -1,21 +1,5 @@
 $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement=France', function (json) {
 
-  // List of groups (here I have one group per column)
-  var days = ["30 jours", "7 jours"]
-
-  // add the options to the button
-  d3.select("#selectDeath")
-    .selectAll('myOptions')
-    .data(days)
-    .enter()
-    .append('option')
-    .text(function (d) {
-      return d;
-    }) // text showed in the menu
-    .attr("value", function (d) {
-      return d;
-    }) // corresponding value returned by the button
-
   //get and parse the data
   var myJson = json
   covid = myJson.allDataByDepartement
@@ -34,17 +18,15 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   // Opération pour avoir le différentiel de data
   for (var i in data) {
     if (i == 0) {
-      var value = data[i].deces
+      var value = data[i].casConfirmes
     } else {
-      var nvalue = data[i].deces
-      data[i].deces = data[i].deces - value
+      var nvalue = data[i].casConfirmes
+      data[i].casConfirmes = data[i].casConfirmes - value
       var value = nvalue
     }
   }
-  data_2 = data.slice(-30)
-  data_1 = data.slice(-7)
-  console.log(data_1);
-  console.log(data_2);
+  var data_long = data.slice(-30)
+  var data_short = data.slice(-7)
 
   // set the dimensions and margins of the graph
   var margin = {
@@ -62,7 +44,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     }).left;
 
   // append the svg object to the body of the page
-  var svg = d3.select("#decesplot")
+  var svg = d3.select("#cases")
     .append("svg")
     .attr("viewBox", `0 0 530 300`)
     .append("g")
@@ -91,14 +73,14 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   // Init Y
   var y = d3.scaleLinear()
     .domain([0, d3.max(data, function (d) {
-      return +d.deces;
+      return +d.casConfirmes;
     })])
     .range([height, 0]);
 
 
 
   // A function that update the chart
-  function update(data) {
+  function update_cas(data) {
 
     // Add X axis --> it is a date format
     x = d3.scaleTime()
@@ -113,7 +95,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
     // Add Y axis
     var y = d3.scaleLinear()
       .domain([0, d3.max(data, function (d) {
-        return +d.deces;
+        return +d.casConfirmes;
       })])
       .range([height, 0]);
     //vg.append("g")
@@ -123,7 +105,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       .data([data], function (d) {
         return d.ser1
       });
-    var color = '#b60000'
+    var color = '#b66d00'
 
 
     // add the area
@@ -143,7 +125,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       })
       .y0(height)
       .y1(function (d) {
-        return y(d.deces);
+        return y(d.casConfirmes);
       })
     )
 
@@ -204,34 +186,34 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
       focus.select("circle.y")
         .attr("transform",
           "translate(" + x(d.date) + "," +
-          y(d.deces) + ")");
+          y(d.casConfirmes) + ")");
 
       focus.select("text.tooltip-date")
         .attr("transform",
           "translate(" + x(d.date) + "," +
-          y(d.deces) + ")")
-        .text("Deces : " + d.deces);
+          y(d.casConfirmes) + ")")
+        .text("Cas : " + d.casConfirmes);
 
       focus.select("text.tooltip-cas")
         .attr("transform",
           "translate(" + x(d.date) + "," +
-          y(d.deces) + ")")
+          y(d.casConfirmes) + ")")
         .text(formatDate(d.date));
 
       focus.select("rect.tooltip")
         .attr("transform",
           "translate(" + x(d.date) + "," +
-          y(d.deces) + ")")
+          y(d.casConfirmes) + ")")
     }
   }
 
-  update(data_1)
+  update_cas(data_long)
 
-  document.getElementById("but1").onclick = function () {
-    update(data_1);
+  document.getElementById("sema").onclick = function () {
+    update_cas(data_short);
   }
-  document.getElementById("but2").onclick = function () {
-    update(data_2);
+  document.getElementById("mois").onclick = function () {
+    update_cas(data_long);
   }
 
   $("#days-select").on('change', function () {

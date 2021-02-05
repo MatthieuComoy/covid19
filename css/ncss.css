@@ -7,8 +7,8 @@ body {
 }
 
 h2 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
     font-size: 2.2em;
     text-transform: uppercase;
     margin: 0px !important;
@@ -26,7 +26,7 @@ p {
 }
 
 .head {
-    text-align: center;
+    text-align: left;
     position: relative;
 }
 
@@ -64,8 +64,8 @@ p {
     color: #2f2f2f;
     border-radius: 4%;
     background: #e8e8e8;
-box-shadow:  20px 20px 60px #c5c5c5,
-             -20px -20px 60px #ffffff;
+    box-shadow: 20px 20px 60px #c5c5c5,
+        -20px -20px 60px #ffffff;
 }
 
 .subcolumns {
@@ -103,6 +103,50 @@ footer {
     display: none;
 }
 
+.tooltip {
+    fill: white;
+    stroke: #000;
+}
+
+.tooltip-date,
+.tooltip-cas {
+    font-weight: bold;
+}
+
+#cases svg {
+    overflow: visible
+}
+
+button{
+    padding: 1em;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.seldeces:hover{
+    background-color:#b60000;
+    box-shadow: 0px 15px 20px #4e4e4e;;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.selcas:hover{
+    background-color:#b66d00;
+    box-shadow: 0px 15px 20px #4e4e4e;;
+    color: #fff;
+    transform: translateY(-3px);
+}
 /*________________________________________________________________________________________________________________________________*/
 /*MEDIAQUERIES*/
 @media only all and (max-width: 1300px) {

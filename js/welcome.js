@@ -34,7 +34,7 @@ $.getJSON('https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement
   var deces_new = data_today[0].deces - data_yesterday[0].deces
   document.getElementById("ndeces").innerHTML = '(+' + deces_new.toLocaleString('fr-FR') + ')';
   document.getElementById("ncas").innerHTML = '(+' + cas_new.toLocaleString('fr-FR') + ')';
-  document.getElementById("titre").innerHTML = 'Les données les plus récentes datent du ' + String(hier);
+ // document.getElementById("titre").innerHTML = 'Les données les plus récentes datent du ' + String(hier);
   document.getElementById("deces").innerHTML = (data_today[0].deces).toLocaleString('fr-FR');
   document.getElementById("cas").innerHTML = (data_today[0].casConfirmes).toLocaleString('fr-FR') ;
 });

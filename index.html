@@ -11,11 +11,12 @@
   <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js> </script> <script
     src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
@@ -27,11 +28,9 @@
   <div class="head">
     <div class="headerobjectswrapper">
       <span>
-        <h2>Dashboard coronavirus</h2>
-        <h1>Développé par Matthieu Comoy</h1>
+        <h2>Dashboard coronavirus</h2><h1>Développé par Matthieu Comoy</h1>
       </span>
     </div>
-    <div class="subhead" id="titre"></div>
   </div>
 
   <div class="content">
@@ -48,8 +47,10 @@
               <p>de plus aujourd'hui</p>
             </div>
           </div>
+          <button id="sema" class="selcas">7 jours</button>
+          <button id="mois" class="selcas">30 jours</button>
           <div id="cases"></div>
-          <script src="js/cases.js"></script>
+          <script src="js/cases2.js"></script>
           <script src="https://d3js.org/d3.v4.js"></script>
           <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
           <!--<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>-->
@@ -69,12 +70,8 @@
               <p>de plus aujourd'hui</p>
             </div>
           </div>
-          <p>Evolution des deces sur <select class="form-select form-select-sm" name="days" id="days-select">
-            <option value="but1">7 jours</option>
-            <option value="but2">30 jours</option>
-        </select></p>
-          <button id="but1">7 jours</button>
-          <button id="but2">30 jours</button>
+          <button id="but1" class="seldeces">7 jours</button>
+          <button id="but2" class="seldeces">30 jours</button>
           <div id="decesplot"></div>
           <script type="text/javascript" src="js/deces.js"></script>
           <!--<div id="my_dataviz"></div>
